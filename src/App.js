@@ -1,23 +1,46 @@
-import logo from './logo.svg';
+import PokeCard from './components/PokeCard/';
+import PokeHead from './components/PokeHead/';
+import Row from 'react-bootstrap/Row';
+import { useEffect, useState } from 'react';
+import {getDataCards} from './services/';
 import './App.css';
 
 function App() {
+
+  const [pokeData, setPokeData] = useState([]);
+  const [pokeDataFilter, setPokeDataFilter] = useState([]);
+
+  useEffect(async ()=>{
+    try {
+      let res = await getDataCards();
+      setPokeData(res);
+      setPokeDataFilter(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const searchPokemon = (e) => {
+    setPokeDataFilter(pokeData);
+    if (e.target.value !== '') {
+      setPokeDataFilter(
+        pokeDataFilter.filter( pokeDetail =>{
+          return pokeDetail.data.name.toLowerCase().includes(e.target.value.toLowerCase()) 
+        })
+      );
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='principal'>
+      <PokeHead searchPokemon={searchPokemon}/>
+      <Row>
+        {
+          pokeDataFilter?.map((res)=>{
+            return <PokeCard  key={res.data.name} pokeData={res.data}/>
+          })
+        }
+      </Row>
     </div>
   );
 }

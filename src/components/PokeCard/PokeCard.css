@@ -1,0 +1,8 @@
+.pokeCard{
+    box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+}
+  
+.pokeCard:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgb(255, 213, 0);
+}
