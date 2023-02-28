@@ -1,13 +1,19 @@
 .principal{
-  background-color: crimson;
   padding: 50px;
   height: 100%;
 }
 
-
-
-html, body, #root, #root>div {
+html, #root, #root>div {
+  background-color: crimson;
   height: 100%
+}
+
+body, #root{
+  padding: 20px;
+  border-radius: 30px;
+  border: solid rgb(56, 56, 232);
+  border-width: thin;
+  box-sizing: border-box;
 }
 
 

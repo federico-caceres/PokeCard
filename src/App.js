@@ -10,14 +10,16 @@ function App() {
   const [pokeData, setPokeData] = useState([]);
   const [pokeDataFilter, setPokeDataFilter] = useState([]);
 
-  useEffect(async ()=>{
-    try {
-      let res = await getDataCards();
-      setPokeData(res);
-      setPokeDataFilter(res);
-    } catch (error) {
-      console.log(error);
-    }
+  useEffect(()=>
+  {
+      getDataCards()
+      .then((res)=>{
+        setPokeData(res);
+        setPokeDataFilter(res);
+      })
+      .catch((error)=>{
+        console.log(error);
+      })
   }, []);
 
   const searchPokemon = (e) => {
