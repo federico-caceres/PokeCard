@@ -12,7 +12,7 @@ export default function PokeHead({searchPokemon}){
                 <h1>
                     <Badge bg="primary">
                         <Image src='../../../poke-ball.png' width="40" className='m-1'></Image>
-                        PokeCard
+                        Poke Cards
                     </Badge>
                 </h1>
             </Col>
